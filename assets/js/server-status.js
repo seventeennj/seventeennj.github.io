@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Array of servers to check (IP:Port)
   const servers = [
-    { name: 'Minecraft Modded Server', ip: '68.204.100.3', port: 25565 }, // Use your public IP
+    { name: 'Minecraft Main Server', ip: '68.204.100.3', port: 25565 }, // Use your public IP
     // Add more servers here if needed
   ];
 
