@@ -108,12 +108,11 @@ h1.center {
   vertical-align: middle;
 }
 /* Position the info icon in the bottom-right corner of each server box */
+/* Container pinned to bottom-right corner */
 .info-icon-container {
-  position: relative;
-  margin-left: auto;
-  align-self: flex-end;
-  padding-right: 5px;
-  padding-bottom: 5px;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
 }
 
 /* Style the ⓘ icon */
@@ -124,13 +123,13 @@ h1.center {
   position: relative;
 }
 
-/* Tooltip styling on hover */
+/* Tooltip box to the right of the icon */
 .info-icon::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: 130%; /* Push up */
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  left: 130%; /* pushes tooltip to the right */
+  transform: translateY(-50%);
   background-color: #2e2e2e;
   color: #cccccc;
   font-size: 0.75em;
@@ -144,7 +143,7 @@ h1.center {
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
-/* Show tooltip on hover */
+/* Reveal tooltip on hover */
 .info-icon:hover::after {
   opacity: 1;
 }
