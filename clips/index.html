@@ -25,16 +25,15 @@
       padding: 20px;
     }
 
-.clip-card {
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  overflow: visible; /* <-- was 'hidden' by default due to rounded corners */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  position: relative;
-  transition: transform 0.2s ease;
-  z-index: 0; /* ensure base */
-}
-
+    .clip-card {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      overflow: visible;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      position: relative;
+      transition: transform 0.2s ease;
+      z-index: 0;
+    }
 
     .clip-card:hover {
       transform: scale(1.02);
@@ -49,13 +48,26 @@
       padding: 12px;
     }
 
+    .clip-title-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .clip-title {
       font-size: 14px;
       font-weight: bold;
-      margin: 0 0 4px 0;
+      margin: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .clip-author {
+      font-size: 12px;
+      color: #888;
+      font-weight: normal;
     }
 
     .clip-meta {
@@ -64,34 +76,33 @@
     }
 
     .menu-wrapper {
-  position: relative;
-  text-align: right;
-  margin-top: -25px;
-}
+      position: relative;
+      text-align: right;
+      margin-top: -25px;
+    }
 
-.menu-button {
-  background: rgba(255, 255, 255, 0.06);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 18px;
-  padding: 4px 8px;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-}
+    .menu-button {
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      padding: 4px 8px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
 
-.menu {
-  display: none;
-  position: absolute;
-  top: 34px;
-  right: 0;
-  background: #2a2a2a;
-  border: 1px solid #444;
-  border-radius: 4px;
-  z-index: 2;
-}
-
+    .menu {
+      display: none;
+      position: absolute;
+      top: 34px;
+      right: 0;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 4px;
+      z-index: 2;
+    }
 
     .menu a {
       display: block;
@@ -117,27 +128,30 @@
         name: "Replay 2025-05-18 23-14-12",
         url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-18%2023-14-12.mp4",
         duration: "0:28",
-        size: "65.1 MB"
+        size: "65.1 MB",
+        author: "nj"
       },
       {
         name: "Untitled",
         url: "https://file.garden/YOUR-ID/clip2.mp4",
         duration: "0:15",
-        size: "70 MB"
+        size: "70 MB",
+        author: "Guest"
       },
       {
         name: "Untitled",
         url: "https://file.garden/YOUR-ID/clip3.mp4",
         duration: "0:19",
-        size: "51 MB"
+        size: "51 MB",
+        author: "Guest"
       },
       {
         name: "Untitled",
         url: "https://file.garden/YOUR-ID/clip4.mp4",
         duration: "0:11",
-        size: "28 MB"
-      },
-      // Add more clips here
+        size: "28 MB",
+        author: "Guest"
+      }
     ];
 
     const grid = document.getElementById('clipGrid');
@@ -146,22 +160,23 @@
       const card = document.createElement('div');
       card.className = 'clip-card';
 
-card.innerHTML = `
-  <video src="${clip.url}" controls></video>
-  <div class="clip-info">
-    <div class="clip-title">${clip.name}</div>
-    <div class="clip-meta">${clip.duration} · ${clip.size}</div>
-    <div class="menu-wrapper">
-      <button class="menu-button">⋮</button>
-      <div class="menu">
-        <a href="${clip.url}" target="_blank">Open File</a>
-        <a href="https://seventeennj.github.io/clips/link/${encodeURIComponent(clip.name)}.html">Open on Site</a>
-        <a href="#" onclick="navigator.clipboard.writeText('https://seventeennj.github.io/clips/link/${encodeURIComponent(clip.name)}.html'); return false;">Copy Link</a>
-      </div>
-    </div>
-  </div>
-`;
-
+      card.innerHTML = `
+        <video src="${clip.url}" controls></video>
+        <div class="clip-info">
+          <div class="clip-title-line">
+            <span class="clip-title">${clip.name}</span>
+            <span class="clip-author">clipped by ${clip.author || "Unknown"}</span>
+          </div>
+          <div class="clip-meta">${clip.duration} · ${clip.size}</div>
+          <div class="menu-wrapper">
+            <button class="menu-button">⋮</button>
+            <div class="menu">
+              <a href="${clip.url}" target="_blank">Open File</a>
+              <a href="#" onclick="navigator.clipboard.writeText('https://seventeennj.github.io/clips/link/${encodeURIComponent(clip.name)}.html'); return false;">Copy Link</a>
+            </div>
+          </div>
+        </div>
+      `;
 
       const btn = card.querySelector('.menu-button');
       const menu = card.querySelector('.menu');
