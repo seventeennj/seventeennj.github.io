@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guide Example</title>
+  <style>
+    /* Reset and basics */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #121212;
+      color: #eee;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+.guide-thumbnail {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+    /* Title container separate for tighter top spacing */
+.title-container {
+  width: 100%;
+  max-width: 720px;
+  padding-top: 10px;
+  padding-bottom: 20px; /* more bottom padding */
+  user-select: none;
+  text-align: center;
+  border-bottom: 1px solid #333; /* subtle dividing line */
+  margin-bottom: 20px; /* extra space after border */
+}
+
+
+.guide-thumbnail {
+  margin: 16px 0 24px 0; /* top, right, bottom, left */
+}
+
+    .title-container h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 32px;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding-bottom: 60px; /* extra padding at bottom */
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 18px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    /* Images and gifs */
+    .guide-image {
+      max-width: 80vw;
+      max-height: 60vh;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      transition: transform 0.25s ease;
+      object-fit: contain;
+      user-select: none;
+    }
+
+    .guide-image:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    }
+
+.next-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.next-section p {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #ccc;
+}
+
+.next-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #1e1e1e;
+  color: #eee;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.next-button:hover {
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+}
+
+    /* Lightbox overlay */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: zoom-out;
+      padding: 20px;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      box-shadow: 0 0 40px white;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title-container">
+    <h1>Clipping Gameplay</h1>
+<img src="images/OBSClippingTHUMBNAIL.png" alt="Guide thumbnail" class="guide-thumbnail" />
+  </div>
+
+
+  <div class="container">
+    <p>First, install OBS at this link: https://obsproject.com</p>
+
+    <p>Once installed, skip the Auto-Configuration Wizard</p>
+    <img src="images/OBSClipping/OBSClipping2.png" alt="img 2" class="guide-image" />
+
+    <p>Now, by the "Scenes" and "Sources" boxes, click the plus icon in the 'Scenes' box and create a new scene, and give it a name. Click on it and click the plus icon in 'Sources' and select display capture.</p>
+    <img src="images/OBSClipping/OBSClipping3.gif" alt="img 2" class="guide-image" />
+
+    <p>Make sure your microphone and audio is set up correctly, and detects input or output. Later we will see if our audio levels need to be adjusted.</p>
+    <img src="images/OBSClipping/OBSClipping4.gif" alt="img 2" class="guide-image" />
+
+    <p>Now click on "Settings" in the controls box and go to Output, then change Output Mode to Advanced. Then click on the "Recording" tab.</p>
+    <img src="images/OBSClipping/OBSClipping5.png" alt="img 2" class="guide-image" />
+
+    <p>Make sure your recording format and audio encoder matches mine. For video encoder if available use "NVIDIA NVENC H.264" or better, 
+for AMD use "AMF" If you do not see these options resort to x264 (cpu). DO NOT add more audio tracks then default unless you know what you're doing, therfore dont copy my audio tracks.</p>
+    <img src="images/OBSClipping/OBSClipping6.png" alt="img 2" class="guide-image" />
+
+    <p>Now match your settings to mine before we tweak to match your system.</p>
+    <img src="images/OBSClipping/OBSClipping7.png" alt="img 2" class="guide-image" />
+
+    <p>For your CQP level, adjust until you experience no lag in your recording. Lower number = better quality and bigger file size. stick within a range from 14-21. 
+Start at 18, best option for clipping. Go higher if your system cannot handle.</p>
+    <img src="images/OBSClipping/OBSClipping8.png" alt="img 2" class="guide-image" />
+
+    <p>For Preset, start at P5, if your system cant handle try a faster option (lower number) .</p>
+    <img src="images/OBSClipping/OBSClipping9.png" alt="img 2" class="guide-image" />
+
+    <p>Now at the top click on the "Replay Buffer" tab. Select "Enable Replay Buffer" and set in seconds how long you want each clip to be, you can leave maximu memory unchanged</p>
+    <img src="images/OBSClipping/OBSClipping10.png" alt="img 2" class="guide-image" />
+
+    <p>Now on the side select "Video" and have the Base resolution at your monitors reoluton, and your output scaled resoluution at whatever you desire. Stick to common fps values.</p>
+    <img src="images/OBSClipping/OBSClipping11.png" alt="img 2" class="guide-image" />
+
+    <p>Now go to "Hotkeys" on the side, and look for "Save Replay" and press a hotkey or key you want to press to save your clip. Alternatively if you have a streamdeck use that for saving the clip instead.</p>
+    <img src="images/OBSClipping/OBSClipping12.png" alt="img 2" class="guide-image" />
+    <img src="images/OBSClipping/OBSClipping13.png" alt="img 2" class="guide-image" />
+
+    <p>Finally exit out of settings and click on "Start Replay Buffer". Now whenever you hit your hotkey or button, it will save a clip for the duration you set, where you set it to save.</p>
+    <img src="images/OBSClipping/OBSClipping15.png" alt="img 2" class="guide-image" />
+
+
+<div class="next-section">
+  <p>Next, check out:</p>
+  <a href="CompressingVideos.html" class="next-button">Guide: Compressing Videos</a>
+</div>
+
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded view" id="lightbox-img" />
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.guide-image');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || '';
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+        lightboxImg.alt = '';
+      }
+    });
+  </script>
+</body>
+</html>
+
