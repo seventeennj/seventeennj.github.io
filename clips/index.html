@@ -127,11 +127,11 @@
       {
         name: "Replay 2025-05-18 23-14-12",
         url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-18%2023-14-12.mp4",
-        duration: "0:28",
+        duration: "0:00",
         size: "65.1 MB",
-        author: "nj"
-      },
-
+        author: "nj",
+        game: "Roblox"
+      }
     ];
 
     const grid = document.getElementById('clipGrid');
@@ -147,7 +147,7 @@
             <span class="clip-title">${clip.name}</span>
             <span class="clip-author">clipped by ${clip.author || "Unknown"}</span>
           </div>
-          <div class="clip-meta">${clip.duration} · ${clip.size}</div>
+          <div class="clip-meta">${clip.size}${clip.game ? ' · ' + clip.game : ''}</div>
           <div class="menu-wrapper">
             <button class="menu-button">⋮</button>
             <div class="menu">
