@@ -120,50 +120,47 @@
 <body>
 
 <div style="display: flex; justify-content: flex-end; padding: 20px; padding-bottom: 0;">
-  <label for="gameFilter" style="margin-right: 8px; line-height: 32px;">
+  <label for="gameFilter" style="margin-right: 8px; line-height: 32px;">Filter:</label>
   <select id="gameFilter" style="padding: 6px 10px; border-radius: 4px; background: #1e1e1e; color: white; border: 1px solid #444;">
     <option value="All">All</option>
   </select>
 </div>
+ <!-- Roblox,
+  🎥 Movie Night -->
+<div class="grid" id="clipGrid"></div>
 
+<script>
+  const clips = [
+    {
+      name: "Replay 2025-05-18 23-14-12",
+      url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-18%2023-14-12.mp4",
+      duration: "0:28",
+      size: "65.1 MB",
+      author: "nj",
+      game: "Roblox"
+    },
+    {
+      name: "Replay 2025-05-20 22-17-02",
+      url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-20%2022-17-02.mp4",
+      duration: "0:17",
+      size: "37.9 MB",
+      author: "nj",
+      game: "🎥 Movie Night"
+    },
+    {
+      name: "Replay 2025-05-20 22-00-44",
+      url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-20%2022-00-44.mp4",
+      duration: "0:7",
+      size: "8.9 MB",
+      author: "nj",
+      game: "🎥 Movie Night"
+    },
+  ];
 
-  <!--<h1></h1>-->
-    <!--Roblox, 
-    Movie Night,-->
-  <div class="grid" id="clipGrid"></div>
-
-  <script>
-    const clips = [
-      {
-        name: "Replay 2025-05-18 23-14-12",
-        url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-18%2023-14-12.mp4",
-        duration: "0:28",
-        size: "65.1 MB",
-        author: "nj",
-        game: "Roblox"
-      },
-            {
-        name: "Replay 2025-05-20 22-17-02",
-        url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-20%2022-17-02.mp4",
-        duration: "0:17",
-        size: "37.9 MB",
-        author: "nj",
-        game: "Movie Night"
-      },
-            {
-        name: "Replay 2025-05-20 22-00-44",
-        url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-20%2022-00-44.mp4",
-        duration: "0:7",
-        size: "8.9 MB",
-        author: "nj",
-        game: "Movie Night"
-      },
-    ];
-
-const grid = document.getElementById('clipGrid');
+  const grid = document.getElementById('clipGrid');
   const gameFilter = document.getElementById('gameFilter');
 
-  // Dynamically populate the filter dropdown
+
   const uniqueGames = [...new Set(clips.map(c => c.game))];
   uniqueGames.forEach(game => {
     const option = document.createElement('option');
@@ -172,8 +169,13 @@ const grid = document.getElementById('clipGrid');
     gameFilter.appendChild(option);
   });
 
+  function getQueryParam(param) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(param);
+  }
+
   function renderClips(filterGame = "All") {
-    grid.innerHTML = ""; // Clear current clips
+    grid.innerHTML = "";
 
     clips
       .filter(clip => filterGame === "All" || clip.game === filterGame)
@@ -215,12 +217,24 @@ const grid = document.getElementById('clipGrid');
       });
   }
 
-  // Initial render
-  renderClips();
+  
+  const urlFilter = getQueryParam("filter");
+  if (urlFilter && uniqueGames.includes(urlFilter)) {
+    gameFilter.value = urlFilter;
+    renderClips(urlFilter);
+  } else {
+    renderClips();
+  }
 
-  // Listen for filter changes
+
   gameFilter.addEventListener('change', () => {
     renderClips(gameFilter.value);
+
+
+    const newURL = gameFilter.value === "All"
+      ? window.location.pathname
+      : `?filter=${encodeURIComponent(gameFilter.value)}`;
+    history.replaceState(null, "", newURL);
   });
 </script>
 
