@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WinRAR Guide</title>
+  <style>
+    /* Reset and basics */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #121212;
+      color: #eee;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+.guide-thumbnail {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+    /* Title container separate for tighter top spacing */
+.title-container {
+  width: 100%;
+  max-width: 720px;
+  padding-top: 10px;
+  padding-bottom: 20px; /* more bottom padding */
+  user-select: none;
+  text-align: center;
+  border-bottom: 1px solid #333; /* subtle dividing line */
+  margin-bottom: 20px; /* extra space after border */
+}
+
+
+.guide-thumbnail {
+  margin: 16px 0 24px 0; /* top, right, bottom, left */
+}
+
+    .title-container h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 32px;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding-bottom: 60px; /* extra padding at bottom */
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 18px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    /* Images and gifs */
+    .guide-image {
+      max-width: 80vw;
+      max-height: 60vh;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      transition: transform 0.25s ease;
+      object-fit: contain;
+      user-select: none;
+    }
+
+    .guide-image:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    }
+
+.next-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.next-section p {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #ccc;
+}
+
+.next-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #1e1e1e;
+  color: #eee;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.next-button:hover {
+  background-color: #2c2c2c;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+}
+
+    /* Lightbox overlay */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: zoom-out;
+      padding: 20px;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 16px;
+      box-shadow: 0 0 40px white;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title-container">
+    <h1>Fucking winrar guide for retards holy shit click extract</h1>
+<img src="../images/WinRARGuideTHUMBNAIL.png" alt="Guide thumbnail" class="guide-thumbnail" />
+  </div>
+
+
+  <div class="container">
+    <p>First, install WinRAR if you don't have it: https://www.win-rar.com/start.html</p>
+
+    <p>During installation make sure to check support for 7z</p>
+    <img src="../images/WinRARGuide/WinRARGuide1.png" alt="img 2" class="guide-image" />
+    
+    
+    <p>Now open up your file you want to extract, open with WinRAR if asked</p>
+
+    <p>Now click on the fucking button saying extract to and select a location, note: you may need to extract it into a folder so make one</p>
+    <img src="../images/WinRARGuide/WinRARGuide2.gif" alt="img 2" class="guide-image" />
+
+    <p>Now you can go to where the files extracted</p>
+
+    <p>Important note: If you need to download MULTIPLE parts for a game, to extract them put all of the zip files in ONE folder, and extract the first part, and it will take care of the other parts for you.
+      If that doesnt work, highlight all parts and right click and click "Extract Here"
+    </p>
+    <img src="../images/WinRARGuide/WinRARGuide3.png" alt="img 3" class="guide-image" />
+
+
+<div class="next-section">
+  <p>Next, check out:</p>
+  <a href="../Sources/" class="next-button">Sources</a>
+</div>
+
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded view" id="lightbox-img" />
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.guide-image');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || '';
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+        lightboxImg.alt = '';
+      }
+    });
+  </script>
+</body>
+</html>
+
