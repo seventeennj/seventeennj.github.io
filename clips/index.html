@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clips</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+    }
+
+    h1 {
+      padding: 20px;
+      font-size: 24px;
+      border-bottom: 1px solid #2c2c2c;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 20px;
+    }
+
+    .clip-card {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      overflow: visible;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      position: relative;
+      transition: transform 0.2s ease;
+      z-index: 0;
+    }
+
+    .clip-card:hover {
+      transform: scale(1.02);
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    .clip-info {
+      padding: 12px;
+    }
+
+    .clip-title-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .clip-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .clip-author {
+      font-size: 12px;
+      color: #888;
+      font-weight: normal;
+    }
+
+    .clip-meta {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .menu-wrapper {
+      position: relative;
+      text-align: right;
+      margin-top: -25px;
+    }
+
+    .menu-button {
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      padding: 4px 8px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 34px;
+      right: 0;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .menu a {
+      display: block;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: white;
+      font-size: 13px;
+    }
+
+    .menu a:hover {
+      background: #3a3a3a;
+    }
+  </style>
+</head>
+<body>
+
+<div style="display: flex; justify-content: flex-end; padding: 20px; padding-bottom: 0;">
+  <label for="gameFilter" style="margin-right: 8px; line-height: 32px;">Filter:</label>
+  <select id="gameFilter" style="padding: 6px 10px; border-radius: 4px; background: #1e1e1e; color: white; border: 1px solid #444;">
+    <option value="All">All</option>
+  </select>
+</div>
+ <!-- Roblox,
+  🎥 Movie Night -->
+<div class="grid" id="clipGrid"></div>
+
+<script>
+  const clips = [
+    {
+      name: "Replay 2025-05-18 23-14-12",
+      url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-18%2023-14-12.mp4",
+      duration: "0:28",
+      size: "65.1 MB",
+      author: "nj",
+      game: "Roblox"
+    },
+    {
+      name: "Project X - Replay 2025-05-20 22-17-02",
+      url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-20%2022-17-02.mp4",
+      duration: "0:17",
+      size: "37.9 MB",
+      author: "nj",
+      game: "🎥 Movie Night"
+    },
+    {
+      name: "Project X - Replay 2025-05-20 22-00-44",
+      url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-20%2022-00-44.mp4",
+      duration: "0:07",
+      size: "8.9 MB",
+      author: "nj",
+      game: "🎥 Movie Night"
+    },
+        {
+      name: "Paranormal Activity 3 - Replay 2025-05-21 00-54-00-01-58-15",
+      url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Paranormal%20Activity%203%20-%20Replay%202025-05-21%2000-54-00-01-58-15.mp4",
+      duration: "0:35",
+      size: "49.2 MB",
+      author: "nj",
+      game: "🎥 Movie Night"
+    },
+  ];
+
+  const grid = document.getElementById('clipGrid');
+  const gameFilter = document.getElementById('gameFilter');
+
+
+  const uniqueGames = [...new Set(clips.map(c => c.game))];
+  uniqueGames.forEach(game => {
+    const option = document.createElement('option');
+    option.value = game;
+    option.textContent = game;
+    gameFilter.appendChild(option);
+  });
+
+  function getQueryParam(param) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(param);
+  }
+
+  function renderClips(filterGame = "All") {
+    grid.innerHTML = "";
+
+    clips
+      .filter(clip => filterGame === "All" || clip.game === filterGame)
+      .forEach(clip => {
+        const card = document.createElement('div');
+        card.className = 'clip-card';
+
+        card.innerHTML = `
+          <video src="${clip.url}" controls></video>
+          <div class="clip-info">
+            <div class="clip-title-line">
+              <span class="clip-title">${clip.name}</span>
+              <span class="clip-author">clipped by ${clip.author || "Unknown"}</span>
+            </div>
+            <div class="clip-meta">${clip.size}${clip.game ? ' · ' + clip.game : ''}</div>
+            <div class="menu-wrapper">
+              <button class="menu-button">⋮</button>
+              <div class="menu">
+                <a href="#" onclick="navigator.clipboard.writeText('https://seventeennj.github.io/clips/link/${encodeURIComponent(clip.name)}.html'); return false;">Copy Sharable Link</a>
+                <a href="${clip.url}" target="_blank">Open File</a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const btn = card.querySelector('.menu-button');
+        const menu = card.querySelector('.menu');
+
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        };
+
+        document.addEventListener('click', () => {
+          menu.style.display = 'none';
+        });
+
+        grid.appendChild(card);
+      });
+  }
+
+  
+  const urlFilter = getQueryParam("filter");
+  if (urlFilter && uniqueGames.includes(urlFilter)) {
+    gameFilter.value = urlFilter;
+    renderClips(urlFilter);
+  } else {
+    renderClips();
+  }
+
+
+  gameFilter.addEventListener('change', () => {
+    renderClips(gameFilter.value);
+
+
+    const newURL = gameFilter.value === "All"
+      ? window.location.pathname
+      : `?filter=${encodeURIComponent(gameFilter.value)}`;
+    history.replaceState(null, "", newURL);
+  });
+</script>
+
+</body>
+</html>
