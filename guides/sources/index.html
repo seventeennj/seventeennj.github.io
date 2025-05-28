@@ -16,6 +16,15 @@
       padding: 20px;
     }
 
+    /* Toggle style label */
+    .style-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #eee;
+      font-size: 14px;
+    }
+
     .title-container {
       width: 100%;
       max-width: 720px;
@@ -31,6 +40,38 @@
       font-weight: 700;
       font-size: 32px;
     }
+body.simplified .container {
+  gap: 16px;
+}
+
+body.simplified .category {
+  padding-top: 8px;
+  gap: 5px;
+}
+
+body.simplified .category h2 {
+  font-size: 18px;
+  margin-bottom: 4px;
+  padding-left: 8px;
+}
+
+body.simplified .entry a {
+  font-size: 14px;
+}
+
+body.simplified .next-section {
+  margin-top: 24px;
+}
+
+body.simplified .next-section p {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+body.simplified .next-button {
+  padding: 8px 16px;
+  font-size: 14px;
+}
 
     .guide-thumbnail {
       max-width: 100%;
@@ -59,29 +100,22 @@
     .category {
       border-top: 1px solid #333;
       padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
     }
-.category h2 {
-  font-size: 24px;
-  margin-bottom: 16px;
-  color: #ccc;
-  border-left: 4px solid #666;
-  padding-left: 12px;
 
-  /* New lines below to prevent it from affecting layout width */
-  align-self: flex-start;
-  width: auto;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.category {
-  border-top: 1px solid #333;
-  padding-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px; /* Controls spacing between entries */
-}
-
+    .category h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: #ccc;
+      border-left: 4px solid #666;
+      padding-left: 12px;
+      align-self: flex-start;
+      width: auto;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
 
     .entry {
       display: flex;
@@ -125,6 +159,24 @@
       margin-top: 4px;
     }
 
+    /* Simplified overrides */
+    body.simplified .entry {
+      background: none;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    body.simplified .entry img,
+    body.simplified .entry small {
+      display: none;
+    }
+
+    body.simplified .entry a {
+      font-size: 16px;
+      color: #88c0ff;
+      font-weight: normal;
+    }
+
     /* Next section styling */
     .next-section {
       text-align: center;
@@ -157,22 +209,28 @@
 </head>
 <body>
 
+  <!-- Style Toggle -->
+  <label class="style-toggle">
+    <input type="checkbox" id="toggleStyle" />
+    Simplified
+  </label>
+
+  <!-- Header -->
   <div class="title-container">
     <h1>Sources</h1>
     <img src="../images/SourcesTHUMBNAIL.png" alt="Thread thumbnail" class="guide-thumbnail" />
     <div class="disclaimer">
       <p>Disclaimer: All sources are sourced by me therfore trusted, but you are downloading at your own risk</p>
       <p>dont click on random links. I'm gatekeeping the megathread 💖</p>
-            <p>If you want me to find any sources, vendors or sites lmk and ill find it</p>
+      <p>If you want me to find any sources, vendors or sites lmk and ill find it</p>
     </div>
   </div>
 
   <div class="container">
-    
-    <!-- Games Category -->
+
+    <!-- Games - Cracks -->
     <div class="category">
       <h2>Games - Cracks (Common, bigger file, may have multiple files, FULL GAME)</h2>
-
       <div class="entry">
         <img src="../images/Sources/SteamGG.png" alt="thumb">
         <a href="https://steamgg.net" target="_blank">SteamGG</a>
@@ -182,7 +240,7 @@
       <div class="entry">
         <img src="../images/Sources/GOG.png" alt="thumb" style="background: #000; padding: 12px;">
         <a href="https://www.gog-games.to" target="_blank">GOG Games</a>
-        <small>Has a catalog of file sharing hosters, ie multiple ways to download, with optional extras (you arent forced to download every addon)</small>
+        <small>Catalog of file sharing hosters, with optional extras</small>
       </div>
 
       <div class="entry">
@@ -194,55 +252,58 @@
       <div class="entry">
         <img src="../images/Sources/IGGGAMES.png" alt="thumb" style="background: #000; padding: 12px;">
         <a href="https://igg-games.com" target="_blank">IGGGAMES</a>
-        <small>Has a nice community to help you/ more interactive</small>
+        <small>Nice community, interactive support</small>
       </div>
-
     </div>
 
-    <!-- Software Category -->
+    <!-- Games - Repacks -->
     <div class="category">
       <h2>Games - Repacks (faster, smaller file size, always ONE FILE)</h2>
 
       <div class="entry">
         <img src="../images/Sources/FitGirl.jpg" alt="thumb">
         <a href="https://fitgirl-repacks.site" target="_blank">FitGirl</a>
-        <small>One of the most talented and well known sources for repacks</small>
+        <small>Well-known and trusted repacker</small>
       </div>
 
       <div class="entry">
         <img src="../images/Sources/DODI.png" alt="thumb">
         <a href="https://dodi-repacks.site" target="_blank">DODI</a>
-        <small>Second best source for repacks, site may be unreliable</small>
+        <small>Second-best source for repacks</small>
       </div>
-
-
     </div>
 
-    <!-- Movies Category -->
+    <!-- Movies -->
     <div class="category">
       <h2>Movies</h2>
 
       <div class="entry">
         <img src="../images/Sources/FlickyStream.png" alt="FlickyStream">
         <a href="https://flickystream.net" target="_blank">FlickyStream</a>
-        <small>Reliable, good media hosting providers, has watch parties</small>
+        <small>Reliable, good media hosting, has watch parties</small>
       </div>
 
       <div class="entry">
         <img src="../images/Sources/Cineby.png" alt="Cineby">
         <a href="https://www.cineby.app" target="_blank">Cineby</a>
-        <small>Reliable, sometimes movies dont work, has watch parties</small>
+        <small>Sometimes unreliable, but also has watch parties</small>
       </div>
-
     </div>
 
     <!-- Next Section -->
-<div class="next-section">
-  <p>Next, check out:</p>
-  <a href="../WinRARGuide/" class="next-button">Guide: using fucking winrar holy shit</a>
-</div>
-
+    <div class="next-section">
+      <p>Next, check out:</p>
+      <a href="../WinRARGuide/" class="next-button">Guide: using fucking winrar holy shit</a>
+    </div>
   </div>
+
+  <!-- JavaScript for style toggle -->
+  <script>
+    const checkbox = document.getElementById('toggleStyle');
+    checkbox.addEventListener('change', () => {
+      document.body.classList.toggle('simplified', checkbox.checked);
+    });
+  </script>
 
 </body>
 </html>
