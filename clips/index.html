@@ -125,8 +125,7 @@
     <option value="All">All</option>
   </select>
 </div>
- <!-- Roblox,
-  🎥 Movie Night -->
+
 <div class="grid" id="clipGrid"></div>
 
 <script>
@@ -147,8 +146,6 @@
       author: "yoscar",
       game: "Roblox"
     },
-
-
     {
       name: "Project X - Replay 2025-05-20 22-17-02",
       url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Replay%202025-05-20%2022-17-02.mp4",
@@ -165,7 +162,7 @@
       author: "nj",
       game: "🎥 Movie Night"
     },
-        {
+    {
       name: "Paranormal Activity 3 - Replay 2025-05-21 00-54-00-01-58-15",
       url: "https://file.garden/aCqlDv1ELCRFgQBY/clips/Paranormal%20Activity%203%20-%20Replay%202025-05-21%2000-54-00-01-58-15.mp4",
       duration: "0:35",
@@ -177,7 +174,6 @@
 
   const grid = document.getElementById('clipGrid');
   const gameFilter = document.getElementById('gameFilter');
-
 
   const uniqueGames = [...new Set(clips.map(c => c.game))];
   uniqueGames.forEach(game => {
@@ -214,6 +210,7 @@
               <div class="menu">
                 <a href="#" onclick="navigator.clipboard.writeText('https://seventeennj.github.io/clips/link/${encodeURIComponent(clip.name)}.html'); return false;">Copy Sharable Link</a>
                 <a href="${clip.url}" target="_blank">Open File</a>
+                <a href="${clip.url}" download>Download Video</a>
               </div>
             </div>
           </div>
@@ -235,7 +232,6 @@
       });
   }
 
-  
   const urlFilter = getQueryParam("filter");
   if (urlFilter && uniqueGames.includes(urlFilter)) {
     gameFilter.value = urlFilter;
@@ -244,10 +240,8 @@
     renderClips();
   }
 
-
   gameFilter.addEventListener('change', () => {
     renderClips(gameFilter.value);
-
 
     const newURL = gameFilter.value === "All"
       ? window.location.pathname
