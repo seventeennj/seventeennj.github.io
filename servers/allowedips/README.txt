@@ -1,0 +1,2 @@
+All ips are public and were given willingly to be used in our authentication system!
+You are not able to do anything malicious with these Ips. These are the ips given when visiting sites and are visible to the public
