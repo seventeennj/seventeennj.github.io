@@ -1,6 +1,6 @@
 v1.0.0
 --ip
-68.204.100.3 -- seventeennj
+68.204.100.0 -- seventeennj
 
 --hwid
 03FF0210-04E0-05C7-2106-F9070008009 -- seventeennj
