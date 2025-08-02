@@ -40,38 +40,38 @@
       font-weight: 700;
       font-size: 32px;
     }
-body.simplified .container {
-  gap: 16px;
-}
+    body.simplified .container {
+      gap: 16px;
+    }
 
-body.simplified .category {
-  padding-top: 8px;
-  gap: 5px;
-}
+    body.simplified .category {
+      padding-top: 8px;
+      gap: 5px;
+    }
 
-body.simplified .category h2 {
-  font-size: 18px;
-  margin-bottom: 4px;
-  padding-left: 8px;
-}
+    body.simplified .category h2 {
+      font-size: 18px;
+      margin-bottom: 4px;
+      padding-left: 8px;
+    }
 
-body.simplified .entry a {
-  font-size: 14px;
-}
+    body.simplified .entry a {
+      font-size: 14px;
+    }
 
-body.simplified .next-section {
-  margin-top: 24px;
-}
+    body.simplified .next-section {
+      margin-top: 24px;
+    }
 
-body.simplified .next-section p {
-  font-size: 14px;
-  margin-bottom: 6px;
-}
+    body.simplified .next-section p {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
 
-body.simplified .next-button {
-  padding: 8px 16px;
-  font-size: 14px;
-}
+    body.simplified .next-button {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
 
     .guide-thumbnail {
       max-width: 100%;
@@ -117,20 +117,23 @@ body.simplified .next-button {
       box-sizing: border-box;
     }
 
+    /* ENTRY BOXES styled like your server boxes */
     .entry {
+      background-color: #1c1c1c;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1.5px solid #333;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      background-color: #1c1c1c;
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      transition: background 0.2s ease;
     }
 
     .entry:hover {
-      background-color: #2a2a2a;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.8);
     }
 
     .entry img {
@@ -164,6 +167,7 @@ body.simplified .next-button {
       background: none;
       box-shadow: none;
       padding: 0;
+      border: none;
     }
 
     body.simplified .entry img,
@@ -275,7 +279,7 @@ body.simplified .next-button {
       </div>
     </div>
 
-        <!-- Software -->
+    <!-- Software -->
     <div class="category">
       <h2>Software</h2>
 
@@ -284,6 +288,7 @@ body.simplified .next-button {
         <a href="https://filecr.com/en/" target="_blank">FileCR</a>
         <small>Best site for software, often carries up-to-date versions you can't find elseware</small>
       </div>
+    </div>
 
     <!-- Movies -->
     <div class="category">
