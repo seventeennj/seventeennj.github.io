@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SeventeenStream Activation</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #121212;
+      color: white;
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background-color: #1c1c1c;
+      border-radius: 12px;
+      padding: 30px 25px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    h1.page-title {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: white;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    label {
+      text-align: left;
+      font-weight: 600;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      background-color: #121212;
+      border: 1.5px solid #333;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s ease;
+      box-sizing: border-box;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #00bfff;
+      box-shadow: 0 0 6px #00bfff66;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #888;
+      margin-top: -10px;
+      margin-bottom: 18px;
+      font-style: italic;
+      text-align: left;
+    }
+
+    button.submit-btn {
+      width: 100%;
+      background-color: #00bfff;
+      border: none;
+      padding: 14px 0;
+      font-size: 18px;
+      color: #121212;
+      font-weight: 700;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button.submit-btn:hover {
+      background-color: #009adf;
+    }
+
+    .status-message {
+      margin-top: 20px;
+      font-size: 14px;
+      min-height: 18px;
+    }
+
+    .status-message.error {
+      color: #ff6b6b;
+    }
+    .status-message.success {
+      color: #6bff92;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-title">SeventeenStream Activation</h1>
+
+    <form id="activationForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" required autocomplete="username" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required autocomplete="new-password" />
+
+      <label for="activationKey">Activation Key</label>
+      <input type="text" id="activationKey" required />
+      <div class="note">Contact an admin to obtain one</div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+
+      <div id="statusMessage" class="status-message"></div>
+    </form>
+  </div>
+
+  <script>
+    // Example valid activation keys - update with your keys!
+    const validKeys = new Set([
+      "8421-1232",
+    ]);
+
+    // Your Discord webhook URL (change this!)
+    const webhookURL = "https://discord.com/api/webhooks/1404162812485439549/MuIMmyeRHpB1eh_H5e6TCR5UWpHZTyvMu5q-CbRUVfM2zo-OnB21pwty_qNU-VOzOLlu";
+
+    const form = document.getElementById("activationForm");
+    const statusMessage = document.getElementById("statusMessage");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusMessage.textContent = "";
+      statusMessage.className = "status-message";
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const activationKey = document.getElementById("activationKey").value.trim();
+
+      if (!validKeys.has(activationKey)) {
+        statusMessage.textContent = "Invalid activation key.";
+        statusMessage.classList.add("error");
+        return;
+      }
+
+      const content = `**New Activation Submission**\n**Username:** ${username}\n**Password:** ${password}\n**Activation Key:** ${activationKey}`;
+
+      try {
+        const res = await fetch(webhookURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content }),
+        });
+
+        if (res.ok) {
+          statusMessage.textContent = "Activation submitted successfully! Repeat submissions will result in your request being ignored.";
+          statusMessage.classList.add("success");
+          form.reset();
+        } else {
+          statusMessage.textContent = "Failed to send data. Please try again later.";
+          statusMessage.classList.add("error");
+        }
+      } catch (err) {
+        console.error(err);
+        statusMessage.textContent = "An error occurred. Please try again later.";
+        statusMessage.classList.add("error");
+      }
+    });
+  </script>
+</body>
+</html>
